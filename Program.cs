@@ -6,7 +6,67 @@ using System.Text;
 using System.Threading.Tasks;
 namespace modul4_1302204032_
 {
+    public enum Laptop { quietMode, balanced, Performance, Turbo };
+    public enum kegiatan { modeUp, modeDown, turboShortcut };
+    class FanLaptop
+    {
+        private Laptop state;
 
+        // Constructor - state awal adalah terkunci
+        public FanLaptop()
+        {
+            state = Laptop.quietMode;
+        }
+
+        // Method untuk mengubah state pintu berdasarkan input
+        public void ubahStatelaptop(kegiatan opsi)
+        {
+            switch (state)
+            {
+                case Laptop.quietMode:
+                    if (opsi == kegiatan.modeUp)
+                    {
+                        Console.WriteLine("Fan Quiet Berubah menjadi Balanced");
+                        state = Laptop.balanced;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fan Quiet Berubah menjadi Balanced dan kembali ke Quiet Mode");
+                    }
+                    break;
+                case Laptop.balanced:
+                    if (opsi == kegiatan.modeUp)
+                    {
+                        Console.WriteLine("Fan Quiet Berubah menjadi Performance");
+                        state = Laptop.Performance;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fan Quiet Berubah menjadi Performance");
+                    }
+                    break;
+                case Laptop.Performance:
+                    if (opsi == kegiatan.modeUp)
+                    {
+                        Console.WriteLine("Fan Quiet Berubah menjadi Turbo");
+                        state = Laptop.Performance;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fan Quiet Berubah menjadi Performance");
+                    }
+                    break;
+            }
+        }
+
+        // Method untuk mendapatkan status pintu saat ini
+        public void getStatusLaptop()
+        {
+            Console.WriteLine("Status Laptop: " + state);
+        }
+
+
+    }
     class KodeProduk
     {
         public enum Produk { Laptop, Smartphone, Tablet, Headset, Keyboard, Mouse, Printer, Monitor, Smartwatch, Kamera };
@@ -71,18 +131,18 @@ namespace modul4_1302204032_
             Console.WriteLine("\n===================================");
 
             // Door Machine state simulation
-            DoorMachine door = new DoorMachine();
-            door.getStatusPintu();
+            FanLaptop door = new FanLaptop();
+            door.getStatusLaptop();
 
             String input = "";
             while (input != "exit")
             {
-                Console.WriteLine("Masukkan Perintah (bukaPintu/kunciPintu)");
+                Console.WriteLine("Masukkan Perintah (Quite -> Turbo/Quite Balanced)");
                 input = Console.ReadLine();
 
                 if (Enum.TryParse(input, out kegiatan trigger))
                 {
-                    door.ubahStatePintu(trigger);
+                    door.ubahStatelaptop(trigger);
                 }
                 else if (input != "exit")
                 {
