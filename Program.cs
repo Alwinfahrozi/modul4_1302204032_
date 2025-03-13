@@ -49,7 +49,7 @@ namespace modul4_1302204032_
                     if (opsi == kegiatan.modeUp)
                     {
                         Console.WriteLine("Fan Quiet Berubah menjadi Turbo");
-                        state = Laptop.Performance;
+                        state = Laptop.Turbo;
                     }
                     else
                     {
@@ -137,7 +137,7 @@ namespace modul4_1302204032_
             String input = "";
             while (input != "exit")
             {
-                Console.WriteLine("Masukkan Perintah (Quite -> Turbo/Quite Balanced)");
+                Console.WriteLine("Masukkan Perintah (QuiteTurbo/QuiteBalanced)");
                 input = Console.ReadLine();
 
                 if (Enum.TryParse(input, out kegiatan trigger))
